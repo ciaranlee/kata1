@@ -23,4 +23,21 @@ describe "something" do
     4.times { @tennis_game.score_point(:player_2) }
     @tennis_game.winner.should == nil
   end
+
+  it "someone wins if they get more than 2 points ahead" do
+    3.times { @tennis_game.score_point(:player_1) }
+    5.times { @tennis_game.score_point(:player_2) }
+    @tennis_game.winner.should == :player_2
+  end
+
+  it "noone wins if they get 1 points ahead only" do
+    3.times { @tennis_game.score_point(:player_1) }
+    4.times { @tennis_game.score_point(:player_2) }
+    @tennis_game.score_point(:player_1)
+    @tennis_game.score_point(:player_1)
+    @tennis_game.score_point(:player_2)
+    @tennis_game.score_point(:player_1)
+    @tennis_game.score_point(:player_2)
+    @tennis_game.winner.should == nil
+  end
 end

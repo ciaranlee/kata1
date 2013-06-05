@@ -15,6 +15,13 @@ class TennisGame
 
   def winner
     if score[@player_one] >= 3 && score[@player_two] >= 3
+    	difference = score[@player_one] - score[@player_two]
+    	if(difference >=2 )
+    		return @player_one
+    	elsif difference <= -2
+    		return @player_two
+    	end
+    		
       return nil
     end
 
